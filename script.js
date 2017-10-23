@@ -13,12 +13,16 @@ Object.prototype.myForEach = function( data ){
 	}
 }
 
+console.group("my ForEach ");
+console.info(" ForEach")
+console.log( test_array )
+
  test_array.myForEach(function(data){
  	console.log( data )
  })
 
-
-
+console.groupEnd();
+///////////////////////////////////////////////////////
 
 
   Array.prototype.myForEachPolyFill = function (callback, thisArg) {
@@ -60,12 +64,20 @@ Object.prototype.myForEach = function( data ){
  
   };
 
+
+console.group("my ForEach PolyFill");
+console.info(" ForEach")
+console.log( test_array )
+
  test_array.myForEachPolyFill(function(data){
  	console.log( data )
  })
+ 
+console.groupEnd();
 
  // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
+///////////////////////////////////////////////////////
 
   Array.prototype.myMap = function(callback, thisArg) {
   	var T, A, k;
@@ -104,7 +116,41 @@ Object.prototype.myForEach = function( data ){
     return A;
   };
 
+console.group("my Map PolyFill");
+console.info(" map")
+console.log( test_array )
 
  test_array.myMap(function(data){
  	console.log( data )
  })
+
+console.groupEnd();
+
+
+
+///////////////////////////////////////////////////////
+
+// http://www.stoimen.com/blog/2010/07/09/friday-algorithms-javascript-bubble-sort/
+
+Object.prototype.mySort = function(data) {
+    var swapped
+    do {
+        swapped = false;
+        for (var i = 0; i < this.length-1; i++) {
+            if (this[i] > this[i+1]) {
+                var temp = this[i]
+                this[i] = this[i+1]
+                this[i+1] = temp
+                swapped = true
+            }
+        }
+    } while (swapped);
+}
+
+test_array.mySort()
+console.group("bubble sort");
+console.info(" mySort")
+console.log( test_array )
+
+console.groupEnd();
+
