@@ -106,33 +106,63 @@ console.groupEnd();
 //https://stackoverflow.com/questions/23449724/why-is-selection-sort-so-fast-in-javascript
 // http://www.stoimen.com/blog/2010/07/09/friday-algorithms-javascript-bubble-sort/
 
-Object.prototype.mySort = function (callBack) {
+Array.prototype.mySort = function(callback) {
+ callback = callback || function (a, b) {
+    if (a === b) {
+      return a > b ? 1 : a < b ? -1 : 0;
+    } 
+  }
 
 var is_sorted = false;
  while (!is_sorted) 
  {
     is_sorted = true;
-    for (var n = 0; n < this.length - 1; n++) 
+    for (var i = 0; i < this.length - 1; i++) 
     {
-      if (this[n] > this[n+1]){
-        var x = this[n+1];
-        this[n+1] = this[n];
-        this[n] = x;
+      if (this[i] > this[i+1]){
+        var x = this[i+1];
+        this[i+1] = this[i];
+        this[i] = x;
         is_sorted = false;
       }
     }
   }
   return this;
-
 }
 
+
 var test_array_v1 = [ 5, 4, 3, 2, 19, 3, 2, 1, 4, 7, 6, 5, 8, 'a', 'B', 'A', 'name']
+var tes = [{name:'Tim'},{name:'Anna'},{name:'Marfha'},{name:'Katrin'}]
+
 
 
 test_array_v1.mySort()
 test_array.mySort()
-
+tes.mySort(function(a,b){
+     console.log(a,a)
+    return a.name > b.name ? -1 : 0
+})
+tes.mySort()
+console.group("mySort");
 console.info(" mySort")
 console.log(test_array)
- console.log( 'array_v1', test_array_v1 )
- console.groupEnd();
+console.log(tes)
+console.log( 'array_v1', test_array_v1 )
+console.groupEnd();
+
+var itemsArray = [
+  ['Anne', 'a'],
+  ['Bob', 'b'],
+  ['Henry', 'b'],
+  ['Andrew', 'd'],
+  ['Jason', 'c'],
+  ['Thomas', 'b']
+];
+
+var sortingArr = ['b', 'c', 'b', 'b', 'a', 'd'];
+sortingArr.mySort()
+console.log(sortingArr);
+itemsArray.mySort(function(a,b){
+     console.log(a, b)
+    return a.a > b.b ? -1 : 0
+})
